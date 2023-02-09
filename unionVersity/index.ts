@@ -19,8 +19,10 @@ type SearchEventsOptions = {
 	query: string | number;
 	eventType: "courses" | "groups";
 };
+
 function searchEvents(options: SearchEventsOptions) {
 	let events: (Course | StudyGroup)[];
+	// Sets events to a list of courses or study groups
 	switch (options.eventType) {
 		case "courses":
 			events = courses;
@@ -29,6 +31,7 @@ function searchEvents(options: SearchEventsOptions) {
 			events = studyGroups;
 			break;
 	}
+	// filters events to the word or number within query
 	return events.filter((event: Course | StudyGroup) => {
 		if (typeof options.query === "number") {
 			return event.id === options.query;
